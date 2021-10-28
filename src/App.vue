@@ -1,16 +1,16 @@
 <template>
   <h1>Picturing Urban Renewal</h1>
   <ul  id="main-menu">
-    <li>Home | </li>
+    <li><router-link to="/">Home</router-link> | </li>
     <li>Personal Stories | </li>
-    <li>Visual Record</li>
+    <li><router-link to="/visuals">Visual Record</router-link></li>
   </ul>
-  <!-- Visuals is hard-wired for the time being -->
-  <Visuals />
+  
+  <router-view></router-view>
 </template>
 
 <script>
-import Visuals from './components/Visuals.vue'
+// import Visuals from './components/Visuals.vue'
 
 export default {
   name: 'App',
@@ -20,7 +20,7 @@ export default {
   //   }
   // },
   components: {
-    Visuals
+    // Visuals
   }
 }
 </script>
@@ -81,5 +81,8 @@ h2 {
   position: relative;
 }
 
-
+a {
+  text-decoration: none;
+  color: white;
+}
 </style>
