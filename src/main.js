@@ -7,6 +7,7 @@ import { ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client/core'
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import App from './App.vue';
 import Visuals from './components/Visuals.vue';
+import Fourteenth from './components/Fourteenth.vue';
 import Corner from './components/Corner.vue';
 import Home from './components/Home.vue';
 
@@ -16,6 +17,7 @@ const router = createRouter({
     routes: [
         { path: '/', component: Home },
         { path: '/visuals', component: Visuals },
+        { path: '/fourteenth', component: Fourteenth },
         { path: '/corner', component: Corner },
     ]
 
