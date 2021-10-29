@@ -89,114 +89,114 @@
 </template>
 
 <style>
-body {
-  background-color: #333024;
-  color:  beige;
-  /*from project-site*/
-  font-family: "Roboto", "Arial", sans-serif;
-  font-size: 1em;
-}
+  body {
+    background-color: #333024;
+    color:  beige;
+    /*from project-site*/
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 1em;
+  }
 
-/*Don's punt for blurb titles*/
-h4 {
-  margin-bottom: -1em;
-}
+  /*Don's punt for blurb titles*/
+  h4 {
+    margin-bottom: -1em;
+  }
 
-header {
-  margin: 1em 2em;
-}
+  header {
+    margin: 1em 2em;
+  }
 
-#wrapper {
-  width: 100vw;
-  overflow-x: scroll;
-}
+  #wrapper {
+    width: 100vw;
+    overflow-x: scroll;
+  }
 
-#caption-band {
-  border: 1px solid yellow;
-  width: 200%;
-  padding:  .25em;
-  position: relative;
-  font-size: .8em;
-  height: 100px;
-}
+  #caption-band {
+    border: 1px solid yellow;
+    width: 200%;
+    padding:  .25em;
+    position: relative;
+    font-size: .8em;
+    height: 100px;
+  }
 
-#view-frame {
-  /*height:  600px;*/
-  /*width: 5000px;*/
-  width: 200%;
-}
+  #view-frame {
+    /*height:  600px;*/
+    /*width: 5000px;*/
+    width: 200%;
+  }
 
-.cap-1 {
-  position: absolute;
-  left:  2%;
-  width:  150px;
-}
+  .cap-1 {
+    position: absolute;
+    left:  2%;
+    width:  150px;
+  }
 
-.cap-2 {
-  position: absolute;
-  left:  10%;
-  width:  150px;
-}
+  .cap-2 {
+    position: absolute;
+    left:  10%;
+    width:  150px;
+  }
 
-.cap-3 {
-  position: absolute;
-  left:  16%;
-  width:  150px;
-}
+  .cap-3 {
+    position: absolute;
+    left:  16%;
+    width:  150px;
+  }
 
-.cap-4 {
-  position: absolute;
-  left:  27%;
-  width:  150px;
-}
+  .cap-4 {
+    position: absolute;
+    left:  27%;
+    width:  150px;
+  }
 
-.cap-5 {
-  position: absolute;
-  left:  33%;
-  width:  150px;
-}
+  .cap-5 {
+    position: absolute;
+    left:  33%;
+    width:  150px;
+  }
 
-.cap-6 {
-  position: absolute;
-  left:  44%;
-  width:  150px;
-}
+  .cap-6 {
+    position: absolute;
+    left:  44%;
+    width:  150px;
+  }
 
-.cap-7 {
-  position: absolute;
-  left:  51%;
-  width:  150px;
-}
+  .cap-7 {
+    position: absolute;
+    left:  51%;
+    width:  150px;
+  }
 
-.cap-8 {
-  position: absolute;
-  left:  58%;
-  width:  150px;
-}
+  .cap-8 {
+    position: absolute;
+    left:  58%;
+    width:  150px;
+  }
 
-.cap-9 {
-  position: absolute;
-  left:  80%;
-  width:  150px;
-}
+  .cap-9 {
+    position: absolute;
+    left:  80%;
+    width:  150px;
+  }
 
-.cap-10 {
-  position: absolute;
-  left:  87%;
-  width:  150px;
-}
+  .cap-10 {
+    position: absolute;
+    left:  87%;
+    width:  150px;
+  }
 
-.cap-11 {
-  position: absolute;
-  left:  92%;
-  width:  150px;
-}
+  .cap-11 {
+    position: absolute;
+    left:  92%;
+    width:  150px;
+  }
 
-.st2{font-family:'PTSans-NarrowBold';}
-.st8{fill:none;stroke:#FFAC06;stroke-width:2;stroke-miterlimit:10;}
-.st9{opacity:0.6;fill:none;stroke:#FFA300;stroke-width:19;stroke-linecap:round;stroke-miterlimit:10;}
-.st10{fill:#FFA300;}
-.st11{font-size:20px;}
+  .st2{font-family:'PTSans-NarrowBold';}
+  .st8{fill:none;stroke:#FFAC06;stroke-width:2;stroke-miterlimit:10;}
+  .st9{opacity:0.6;fill:none;stroke:#FFA300;stroke-width:19;stroke-linecap:round;stroke-miterlimit:10;}
+  .st10{fill:#FFA300;}
+  .st11{font-size:20px;}
 
     
 </style>

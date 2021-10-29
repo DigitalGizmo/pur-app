@@ -1,8 +1,8 @@
 <template>
   <h2>Home page</h2>
     <ul>
-    <li></li>
     <li><router-link to="/visuals">Visual Record</router-link></li>
-    <li><router-link to="/corner">14th street corner</router-link></li>
+    <li><router-link to="/fourteenth">14th street stroll-by</router-link></li>
+    <li><router-link to="/corner">corner test</router-link></li>
   </ul>  
 </template>
