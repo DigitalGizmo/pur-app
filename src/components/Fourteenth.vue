@@ -8,6 +8,8 @@
 <div id="wrapper">
   <div id="caption-band">
 
+    <div v-if="error">Error: {{ error.message }} </div>
+
     <div class="cap-1">
       <h4>The New York Sun</h4>
       <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
@@ -54,24 +56,7 @@
     </div>
   </div><!-- /caption-band -->
 
-  <div v-if="1 === 2">
-    
-
-    <div v-if="loading">Loading...</div>
-
-    <div v-else-if="error">Error: {{ error.message }} </div>
-
-    <ul>
-      <li 
-        v-for="(hotspot, index) of hotspots"
-       :key="hotspot.index"
-      >
-       index: {{ index }}  title: {{ hotspot.title }}
-      </li>
-
-    </ul>
-
-  </div>
+  
 
   <section id="view-frame">
 
@@ -91,9 +76,25 @@
           transform="translate(0 0)"> <!-- 171.62 -->
       </image>
     </g>
-    <g id="hilites">
-      <circle id="ny-sun-hilite" class="st8" cx="259.7" cy="1190" r="258.7"/>
-      <circle id="murrays-hilite" class="st8" cx="831.3" cy="930" r="374.5"/>
+
+    <g v-if="loading">
+      <text x="100" y="50" fill="black">Loading...</text>
+    </g>
+
+    <g v-else-if="hotspots" id="hilites" >
+
+      <circle
+        v-for="(hotspot, index) of hotspots"
+        :key="hotspot.ordinal"
+        class="low-spot" 
+        :class="{'hi-spot': hilites[index] }"
+        :cx="hotspot.hotspot_x" 
+        :cy="hotspot.hotspot_y" 
+        :r="hotspot.hotspot_r"
+        @mouseover="hoverThis(index)"
+        @mouseleave="unHoverThis(index)"
+        />
+
     </g>
     <g id="turn-buttons">
       <polyline class="st9" points="85.2,191 26.8,239 85.2,289  "/>
@@ -107,7 +108,7 @@
 </template>
 
 <script>
-// import { ref } from 'vue';
+import { ref } from 'vue';
 import { useQuery, useResult } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 
@@ -116,6 +117,19 @@ export default {
 
   // Composable-based graphql for the image list from admin
   setup () {
+
+    // --- hotspot handling
+    const hilites = ref([false, false, false, false, false, false, false, false, false,false, false]);
+
+    // hilites.value[1] = true;
+
+    function hoverThis(index) {
+      hilites.value[index] = true;
+    }
+
+    function unHoverThis(index) {
+      hilites.value[index] = false;
+    }
 
     // ------ Data from gql handling -----
     // Dynamic version
@@ -149,6 +163,9 @@ export default {
       hotspots,
       loading,
       error,
+      hilites,
+      hoverThis,
+      unHoverThis,
     }
   },
 
@@ -186,6 +203,21 @@ export default {
   h4 {
     margin-bottom: -1em;
   }
+
+  /*Don's highlighting - from st8 and st10*/
+
+  .low-spot {
+    fill:#666666;
+    opacity: 0;
+  }
+  .hi-spot {
+      fill:#FFA300;
+      stroke-width:2;
+      stroke-miterlimit:10;
+      opacity: .3;
+      stroke:#FFAC06;
+  }
+  /* End Don's highlighting */
 
   .cap-1 {
     position: absolute;
