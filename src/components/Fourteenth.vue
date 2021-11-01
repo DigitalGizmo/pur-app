@@ -10,50 +10,20 @@
 
     <div v-if="error">Error: {{ error.message }} </div>
 
-    <div class="cap-1">
-      <h4>The New York Sun</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
+    <div 
+      v-for="(hotspot, index) of hotspots"
+      :key="hotspot.ordinal"
+      class="cap" 
+      :style="{left: text_percents[index]}"
+      :class="{'hi-text': hilites[index] }"
+      @mouseover="hoverThis(index)"
+      @mouseleave="unHoverThis(index)"
+      >
+      <h4>{{ hotspot.title }}</h4>
+      <p>{{ hotspot.blurb }}</p>
     </div>
-    <div class="cap-2">
-      <h4>Five and Dime Stores</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-3">
-      <h4>Three Balls</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-4">
-      <h4>One Flight Up</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-5">
-      <h4>The Lunch Counter</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-6">
-      <h4>Nosy Neighbors</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-7">
-      <h4>Roman Macaroni</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-8">
-      <h4>Street</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-9">
-      <h4>Immigrants</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-10">
-      <h4>Rooms</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
-    <div class="cap-11">
-      <h4>Radio</h4>
-      <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
-    </div>
+
+
   </div><!-- /caption-band -->
 
   
@@ -131,6 +101,10 @@ export default {
       hilites.value[index] = false;
     }
 
+    // Text placement
+    const text_percents = ['2%', '10%', '16%', '27%', '33%', '44%', '51%', '58%'];
+
+
     // ------ Data from gql handling -----
     // Dynamic version
     // const interactive_id_ref = ref(null)
@@ -166,6 +140,7 @@ export default {
       hilites,
       hoverThis,
       unHoverThis,
+      text_percents,
     }
   },
 
@@ -187,9 +162,9 @@ export default {
   #caption-band {
     border: 1px solid yellow;
     width: 200%;
-    padding:  .25em;
+    padding:  .1em;
     position: relative;
-    font-size: .8em;
+    font-size: .75em;
     height: 100px;
   }
 
@@ -211,14 +186,27 @@ export default {
     opacity: 0;
   }
   .hi-spot {
-      fill:#FFA300;
+      fill:#FFAC06;
       stroke-width:2;
       stroke-miterlimit:10;
-      opacity: .3;
+      opacity: .2;
       stroke:#FFAC06;
+      stroke-opacity: .9;
   }
+
+  .hi-text {
+    color: #FFAC06;
+  }
+
   /* End Don's highlighting */
 
+  /* changes to caption styles*/
+  .cap {
+    position: absolute;
+    width:  160px;
+  }
+
+  /* End changes to caption styles*/
   .cap-1 {
     position: absolute;
     left:  2%;
