@@ -1,6 +1,6 @@
 <template>
   <h1>Picturing Urban Renewal</h1>
-  <ul  id="main-menu">
+  <ul id="main-menu">
     <li><router-link to="/">Home</router-link> | </li>
     <li>Personal Stories | </li>
     <li><router-link to="/visuals">Visual Record</router-link></li>
@@ -27,7 +27,11 @@ export default {
 
 <style>
 body {
-  background-color: black;
+  background-color: #333024;
+  color:  beige;
+  font-family: "PT Sans", sans-serif;
+  padding: 3%;
+  font-size: 1em;
 }
 
 ul, ol {
@@ -48,9 +52,6 @@ h2 {
 }
 
 #app {
- color:  beige;
- font-family: sans-serif;
- padding: 5%;
 }
 
 /* Don's freelancing */

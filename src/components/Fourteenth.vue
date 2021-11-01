@@ -1,7 +1,7 @@
 <template>
 
   <header>
-    <h1>14th Steet</h1>
+    <h1>Stroll By: 14th Street & 1st Avenue</h1>
     <p>A brief introduction perhaps?</p>
   </header>
 
@@ -54,57 +54,55 @@
     </div>
   </div><!-- /caption-band -->
 
-<div v-if="1 === 2">
-  
+  <div v-if="1 === 2">
+    
 
-  <div v-if="loading">Loading...</div>
+    <div v-if="loading">Loading...</div>
 
-  <div v-else-if="error">Error: {{ error.message }} </div>
+    <div v-else-if="error">Error: {{ error.message }} </div>
 
-  <ul>
-    <li 
-      v-for="(hotspot, index) of hotspots"
-     :key="hotspot.index"
-    >
-     index: {{ index }}  title: {{ hotspot.title }}
-    </li>
+    <ul>
+      <li 
+        v-for="(hotspot, index) of hotspots"
+       :key="hotspot.index"
+      >
+       index: {{ index }}  title: {{ hotspot.title }}
+      </li>
 
-  </ul>
+    </ul>
 
-</div>
+  </div>
 
+  <section id="view-frame">
 
-<section id="view-frame">
+    <svg 
+      version="1.1" 
+      xmlns="http://www.w3.org/2000/svg" 
+      xmlns:xlink="http://www.w3.org/1999/xlink" 
+      x="0px" y="0px"
+      viewBox="0 0 6000 1647" 
+      style="enable-background:new 0 0 6000 1647;" 
+      xml:space="preserve">
 
-<svg 
-  version="1.1" 
-  xmlns="http://www.w3.org/2000/svg" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
-  x="0px" y="0px"
-  viewBox="0 0 6000 1647" 
-  style="enable-background:new 0 0 6000 1647;" 
-  xml:space="preserve">
+    <g id="photo">
+      <image  
+          width="6006" height="1500" 
+          xlink:href="http://dev.picturingurbanrenewal.org/prod-assets/interactives/14thStreet/fourteenth-BB.jpg"  
+          transform="translate(0 0)"> <!-- 171.62 -->
+      </image>
+    </g>
+    <g id="hilites">
+      <circle id="ny-sun-hilite" class="st8" cx="259.7" cy="1190" r="258.7"/>
+      <circle id="murrays-hilite" class="st8" cx="831.3" cy="930" r="374.5"/>
+    </g>
+    <g id="turn-buttons">
+      <polyline class="st9" points="85.2,191 26.8,239 85.2,289  "/>
+      <text transform="translate(85.1718 245)" class="st10 st2 st11">TURN THE CORNER</text>
+    </g>
+    </svg>
 
-<g id="photo">
-    <image 
-      style="overflow:visible;" 
-      width="6006" height="1500" 
-      xlink:href="http://dev.picturingurbanrenewal.org/prod-assets/interactives/14thStreet/fourteenth-BB.jpg"  
-      transform="translate(0 0)"> <!-- 171.62 -->
-  </image>
-</g>
-<g id="hilites">
-  <circle id="ny-sun-hilite" class="st8" cx="259.7" cy="1190" r="258.7"/>
-  <circle id="murrays-hilite" class="st8" cx="831.3" cy="930" r="374.5"/>
-</g>
-<g id="turn-buttons">
-  <polyline class="st9" points="85.2,191 26.8,239 85.2,289  "/>
-  <text transform="translate(85.1718 245)" class="st10 st2 st11">TURN THE CORNER</text>
-</g>
-</svg>
-
-</section>
-</div>
+  </section>
+</div><!-- /wrapper -->
 
 </template>
 
@@ -159,21 +157,9 @@ export default {
 
 
 <style>
-  body {
-    background-color: #333024;
-    color:  beige;
-    /*from project-site*/
-    font-family: "Roboto", "Arial", sans-serif;
-    font-size: 1em;
-  }
-
-  /*Don's punt for blurb titles*/
-  h4 {
-    margin-bottom: -1em;
-  }
 
   header {
-    margin: 1em 2em;
+    margin: 1em 0;
   }
 
   #wrapper {
@@ -194,6 +180,11 @@ export default {
     /*height:  600px;*/
     /*width: 5000px;*/
     width: 200%;
+  }
+
+  /*caption titles*/
+  h4 {
+    margin-bottom: -1em;
   }
 
   .cap-1 {
@@ -267,6 +258,5 @@ export default {
   .st9{opacity:0.6;fill:none;stroke:#FFA300;stroke-width:19;stroke-linecap:round;stroke-miterlimit:10;}
   .st10{fill:#FFA300;}
   .st11{font-size:20px;}
-
     
 </style>
