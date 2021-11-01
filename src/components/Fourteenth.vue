@@ -7,6 +7,7 @@
 
 <div id="wrapper">
   <div id="caption-band">
+
     <div class="cap-1">
       <h4>The New York Sun</h4>
       <p>lorem ipsum blah blah blah lorem ipsum blah blah blah lorem ipsum blah blah blah</p>
@@ -53,6 +54,26 @@
     </div>
   </div><!-- /caption-band -->
 
+<div v-if="1 === 2">
+  
+
+  <div v-if="loading">Loading...</div>
+
+  <div v-else-if="error">Error: {{ error.message }} </div>
+
+  <ul>
+    <li 
+      v-for="(hotspot, index) of hotspots"
+     :key="hotspot.index"
+    >
+     index: {{ index }}  title: {{ hotspot.title }}
+    </li>
+
+  </ul>
+
+</div>
+
+
 <section id="view-frame">
 
 <svg 
@@ -82,11 +103,60 @@
 </g>
 </svg>
 
-
 </section>
 </div>
 
 </template>
+
+<script>
+// import { ref } from 'vue';
+import { useQuery, useResult } from '@vue/apollo-composable'
+import gql from 'graphql-tag'
+
+export default {
+  name: 'Fourteenth',
+
+  // Composable-based graphql for the image list from admin
+  setup () {
+
+    // ------ Data from gql handling -----
+    // Dynamic version
+    // const interactive_id_ref = ref(null)
+    // But for now, static
+    const interactive_id = 1;
+
+    const { result, loading, error } = useQuery(gql`
+      query getHotspots ($interactive_id: Int){
+          hotspots(interactive_id: $interactive_id){
+            title
+            ordinal
+            blurb
+            text_percent
+            hotspot_x
+            hotspot_y
+            hotspot_r
+          }
+      }
+    `, {
+        interactive_id: interactive_id,
+      })
+    // () => ({
+    //   // interactive_id: parseInt(interactive_id_ref.value)
+    //   interactive_id: parseInt(interactive_id_ref.value)
+    // }) )
+
+    const hotspots = useResult(result, null, data => data.hotspots)
+
+    return {
+      hotspots,
+      loading,
+      error,
+    }
+  },
+
+}
+</script>
+
 
 <style>
   body {

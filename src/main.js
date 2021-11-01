@@ -30,7 +30,9 @@ const router = createRouter({
 const httpLink = createHttpLink({
     // uri: process.env.VUE_APP_SOURCELINK_API_URL,
     uri: 'http://admin.picturingurbanrenewal.org/archive/graphql/'
+    // uri: 'http://admin.picturingurbanrenewal.org/interactives/graphql/'
     // uri: 'http://127.0.0.1:8000/archive/graphql/'
+    // uri: 'http://127.0.0.1:8000/interactives/graphql/'
     // uri: 'https://rickandmortyapi.com/graphql',
 })
 
