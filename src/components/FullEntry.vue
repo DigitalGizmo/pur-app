@@ -65,7 +65,7 @@ p.close {
 }
 
 .close a {
-  color: ;
+  color: darkorange;
 }
 
 img.fullpic {

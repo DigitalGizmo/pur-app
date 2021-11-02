@@ -1,3 +1,4 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'development' ? '/' : '/app/'
+    // publicPath: process.env.NODE_ENV === 'development' ? '/' : '/app/',
+    runtimeCompiler: true,
 };

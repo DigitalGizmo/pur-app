@@ -1,6 +1,6 @@
 <template>
-  <h1>Picturing Urban Renewal</h1>
   <ul id="main-menu">
+    <li class="little-title">Picturing Urban Renewal: </li>
     <li><router-link to="/">Home</router-link> | </li>
     <li>Personal Stories | </li>
     <li><router-link to="/visuals">Visual Record</router-link></li>
@@ -31,6 +31,7 @@ body {
   color:  beige;
   font-family: "PT Sans", sans-serif;
   padding: 3%;
+  padding-top: 20px;
   font-size: 1em;
 }
 
@@ -57,6 +58,12 @@ h2 {
 /* Don's freelancing */
 #main-menu li {
   display: inline;
+}
+
+.little-title {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
 }
 
 /* From Treat Map  */

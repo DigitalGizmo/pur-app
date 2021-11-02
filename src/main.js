@@ -14,11 +14,11 @@ import Home from './components/Home.vue';
 // Set up Router
 const router = createRouter({
     history: createWebHistory(),
-    base: process.env.NODE_ENV === 'development' ? '/' : '/app/', 
+    // base: process.env.NODE_ENV === 'development' ? '/' : '/app/', 
     routes: [
-        { path: '/', component: Home },
-        { path: '/visuals', component: Visuals },
         { path: '/fourteenth', component: Fourteenth },
+        { path: '/visuals', component: Visuals },
+        { path: '/', component: Home },
         { path: '/corner', component: Corner },
     ]
 

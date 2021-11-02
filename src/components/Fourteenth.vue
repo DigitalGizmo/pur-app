@@ -1,7 +1,7 @@
 <template>
 
   <header>
-    <h1>Stroll By: 14th Street & 1st Avenue</h1>
+    <h2>Stroll By: 14th Street & 1st Avenue</h2>
     <p>A brief introduction perhaps?</p>
   </header>
 
@@ -20,7 +20,10 @@
       @mouseleave="unHoverThis(index)"
       >
       <h4>{{ hotspot.title }}</h4>
-      <p>{{ hotspot.blurb }}</p>
+      <p>
+        {{ hotspot.blurb }} 
+        <a @click="showStrollMore(index)" href="#">more...</a>
+      </p>
     </div>
 
 
@@ -72,7 +75,18 @@
     </g>
     </svg>
 
-  </section>
+  <stroll-more
+    v-if="strollMoreOn"
+      :hotspots="hotspots"
+      :currIndex="currIndex"
+      :closeStrollMore="closeStrollMore"
+      :text_percents="text_percents"
+    >
+  </stroll-more>
+
+  </section> <!-- end view-frame -->
+
+
 </div><!-- /wrapper -->
 
 </template>
@@ -81,6 +95,7 @@
 import { ref } from 'vue';
 import { useQuery, useResult } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
+import StrollMore from '../components/StrollMore.vue'
 
 export default {
   name: 'Fourteenth',
@@ -104,6 +119,19 @@ export default {
     // Text placement
     const text_percents = ['2%', '10%', '16%', '27%', '33%', '44%', '51%', '58%'];
 
+    // ---- More ------------
+    const strollMoreOn = ref(false);
+    const currIndex = ref(0);
+
+    function showStrollMore (index) {
+      currIndex.value = index;
+      console.log('currIndex: ' + currIndex.value);
+      strollMoreOn.value = true;
+    }
+
+    function closeStrollMore () {
+      strollMoreOn.value = false;
+    }
 
     // ------ Data from gql handling -----
     // Dynamic version
@@ -121,6 +149,7 @@ export default {
             hotspot_x
             hotspot_y
             hotspot_r
+            more
           }
       }
     `, {
@@ -141,9 +170,15 @@ export default {
       hoverThis,
       unHoverThis,
       text_percents,
+      strollMoreOn,
+      currIndex,
+      showStrollMore,
+      closeStrollMore,
     }
   },
-
+  components: {
+    StrollMore
+  },
 }
 </script>
 
@@ -174,6 +209,13 @@ export default {
     width: 200%;
   }
 
+h2 {
+  font-size: 1.7em;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0;
+}
+
   /*caption titles*/
   h4 {
     margin-bottom: -1em;
@@ -187,9 +229,10 @@ export default {
   }
   .hi-spot {
       fill:#FFAC06;
+      /*fill:none;*/
       stroke-width:2;
       stroke-miterlimit:10;
-      opacity: .2;
+      opacity: .25;
       stroke:#FFAC06;
       stroke-opacity: .9;
   }
@@ -207,71 +250,30 @@ export default {
   }
 
   /* End changes to caption styles*/
-  .cap-1 {
-    position: absolute;
-    left:  2%;
-    width:  150px;
+
+  /*Stroll version of slimpop*/
+  .strollbox {
+    position: fixed;
+    top:200px;
+    /*left:600px;*/
+    width: 500px;
+    height: 500px;
+    z-index: 99;
   }
 
-  .cap-2 {
-    position: absolute;
-    left:  10%;
-    width:  150px;
+  /* shared styles for journal and credits popups, specific styles in FullEntry.vue and Credits.vue */
+  #stroll-pop-wrapper {
+    background-color: beige;  
+    border: 1px solid gray;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
+    color: black;
+    overflow:  auto;
+    padding: 2em;
+    position: relative;
   }
 
-  .cap-3 {
-    position: absolute;
-    left:  16%;
-    width:  150px;
-  }
 
-  .cap-4 {
-    position: absolute;
-    left:  27%;
-    width:  150px;
-  }
 
-  .cap-5 {
-    position: absolute;
-    left:  33%;
-    width:  150px;
-  }
-
-  .cap-6 {
-    position: absolute;
-    left:  44%;
-    width:  150px;
-  }
-
-  .cap-7 {
-    position: absolute;
-    left:  51%;
-    width:  150px;
-  }
-
-  .cap-8 {
-    position: absolute;
-    left:  58%;
-    width:  150px;
-  }
-
-  .cap-9 {
-    position: absolute;
-    left:  80%;
-    width:  150px;
-  }
-
-  .cap-10 {
-    position: absolute;
-    left:  87%;
-    width:  150px;
-  }
-
-  .cap-11 {
-    position: absolute;
-    left:  92%;
-    width:  150px;
-  }
 
   .st2{font-family:'PTSans-NarrowBold';}
   .st8{fill:none;stroke:#FFAC06;stroke-width:2;stroke-miterlimit:10;}
