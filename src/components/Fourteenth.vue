@@ -134,13 +134,13 @@ export default {
 
     // ------ Data from gql handling -----
     // Dynamic version
-    // const interactive_id_ref = ref(null)
+    // const interactive_part_id_ref = ref(null)
     // But for now, static
-    const interactive_id = 1;
+    const interactive_part_id = 1;
 
     const { result, loading, error } = useQuery(gql`
-      query getHotspots ($interactive_id: Int){
-          hotspots(interactive_id: $interactive_id){
+      query getHotspots ($interactive_part_id: Int){
+          hotspots(interactive_part_id: $interactive_part_id){
             title
             ordinal
             blurb
@@ -152,11 +152,11 @@ export default {
           }
       }
     `, {
-        interactive_id: interactive_id,
+        interactive_part_id: interactive_part_id,
       })
     // () => ({
-    //   // interactive_id: parseInt(interactive_id_ref.value)
-    //   interactive_id: parseInt(interactive_id_ref.value)
+    //   // interactive_part_id: parseInt(interactive_part_id_ref.value)
+    //   interactive_part_id: parseInt(interactive_part_id_ref.value)
     // }) )
 
     const hotspots = useResult(result, null, data => data.hotspots)
