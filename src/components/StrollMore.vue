@@ -1,5 +1,5 @@
 <template>
-  <div class="strollbox" :style="{left: text_percents[currIndex]}">
+  <div class="strollbox" :style="{left: hotspots[currIndex].text_percent + '%'}">
     <div id="stroll-pop-wrapper" class="entry-pop">
       <p class="close">
         <a href="#" @click="closeStrollMore">Close</a>
@@ -23,7 +23,6 @@ export default {
     },
     currIndex: Number,
     closeStrollMore: Function,
-    text_percents: String
   }
 }
 </script>

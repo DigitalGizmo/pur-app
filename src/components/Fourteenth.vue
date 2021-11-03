@@ -14,7 +14,7 @@
       v-for="(hotspot, index) of hotspots"
       :key="hotspot.ordinal"
       class="cap" 
-      :style="{left: text_percents[index]}"
+      :style="{left: hotspot.text_percent + '%'}"
       :class="{'hi-text': hilites[index] }"
       @mouseover="hoverThis(index)"
       @mouseleave="unHoverThis(index)"
@@ -29,7 +29,7 @@
 
   </div><!-- /caption-band -->
 
-  
+  <!-- style="enable-background:new 0 0 6000 1647;" -->
 
   <section id="view-frame">
 
@@ -38,9 +38,12 @@
       xmlns="http://www.w3.org/2000/svg" 
       xmlns:xlink="http://www.w3.org/1999/xlink" 
       x="0px" y="0px"
-      viewBox="0 0 6000 1647" 
-      style="enable-background:new 0 0 6000 1647;" 
-      xml:space="preserve">
+      viewBox="0 0 6000 1647"
+      preserveAspectRatio="xMidYMid meet" 
+       
+      xml:space="preserve"
+      class="svg-content"
+      >
 
     <g id="photo">
       <image  
@@ -80,7 +83,6 @@
       :hotspots="hotspots"
       :currIndex="currIndex"
       :closeStrollMore="closeStrollMore"
-      :text_percents="text_percents"
     >
   </stroll-more>
 
@@ -115,9 +117,6 @@ export default {
     function unHoverThis(index) {
       hilites.value[index] = false;
     }
-
-    // Text placement
-    const text_percents = ['2%', '10%', '16%', '27%', '33%', '44%', '51%', '58%'];
 
     // ---- More ------------
     const strollMoreOn = ref(false);
@@ -169,7 +168,6 @@ export default {
       hilites,
       hoverThis,
       unHoverThis,
-      text_percents,
       strollMoreOn,
       currIndex,
       showStrollMore,
@@ -221,6 +219,13 @@ h2 {
     margin-bottom: -1em;
   }
 
+  /*Don: new for svg responsiveness! */
+  .svg-content {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
   /*Don's highlighting - from st8 and st10*/
 
   .low-spot {
@@ -254,7 +259,7 @@ h2 {
   /*Stroll version of slimpop*/
   .strollbox {
     position: fixed;
-    top:200px;
+    top:120px;
     /*left:600px;*/
     width: 500px;
     height: 500px;
