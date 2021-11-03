@@ -193,7 +193,7 @@ export default {
   }
 
   #caption-band {
-    border: 1px solid yellow;
+    background-color: #464231;
     width: 200%;
     padding:  .1em;
     position: relative;
@@ -202,10 +202,17 @@ export default {
   }
 
   #view-frame {
-    /*height:  600px;*/
-    /*width: 5000px;*/
+    position: relative;
     width: 200%;
   }
+
+/*Don: new for svg responsiveness! */
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
 h2 {
   font-size: 1.7em;
@@ -214,70 +221,58 @@ h2 {
   margin: 0;
 }
 
-  /*caption titles*/
-  h4 {
-    margin-bottom: -1em;
-  }
+/*caption titles*/
+h4 {
+  margin: .25em 0 -1em 0;
+}
 
-  /*Don: new for svg responsiveness! */
-  .svg-content {
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      left: 0;
-  }
   /*Don's highlighting - from st8 and st10*/
 
-  .low-spot {
-    fill:#666666;
-    opacity: 0;
-  }
-  .hi-spot {
-      fill:#FFAC06;
-      /*fill:none;*/
-      stroke-width:2;
-      stroke-miterlimit:10;
-      opacity: .25;
-      stroke:#FFAC06;
-      stroke-opacity: .9;
-  }
+.low-spot {
+  fill:#666666;
+  opacity: 0;
+}
 
-  .hi-text {
-    color: #FFAC06;
-  }
+.hi-spot {
+    fill:#FFAC06;
+    stroke-width:2;
+    stroke-miterlimit:10;
+    opacity: .25;
+    stroke:#FFAC06;
+    stroke-opacity: .9;
+}
 
-  /* End Don's highlighting */
+.hi-text {
+  color: #FFAC06;
+}
 
-  /* changes to caption styles*/
-  .cap {
-    position: absolute;
-    width:  160px;
-  }
+/* changes to caption styles - the width will need to be made responsive*/
+.cap {
+  position: absolute;
+  width:  160px;
+}
 
-  /* End changes to caption styles*/
+/* End changes to caption styles*/
 
-  /*Stroll version of slimpop*/
-  .strollbox {
-    position: fixed;
-    top:120px;
-    /*left:600px;*/
-    width: 500px;
-    height: 500px;
-    z-index: 99;
-  }
+/*Stroll version of slimpop*/
+.strollbox {
+  position: fixed;
+  top:100px;
+  width: 600px;
+  height: 500px;
+  z-index: 99;
+}
 
-  /* shared styles for journal and credits popups, specific styles in FullEntry.vue and Credits.vue */
-  #stroll-pop-wrapper {
-    background-color: beige;  
-    border: 1px solid gray;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
-    color: black;
-    overflow:  auto;
-    padding: 2em;
-    position: relative;
-  }
-
-
+/* shared styles for journal and credits popups, specific styles in FullEntry.vue and Credits.vue */
+#stroll-pop-wrapper {
+  background-color: #f9f6ea;  
+  border: 1px solid gray;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
+  color: #333024;
+  overflow:  auto;
+  padding: 1.5em;
+  position: relative;
+}
 
 
   .st2{font-family:'PTSans-NarrowBold';}
