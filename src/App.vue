@@ -3,7 +3,8 @@
     <li class="little-title">Picturing Urban Renewal: </li>
     <li><router-link to="/">Home</router-link> | </li>
     <li>Personal Stories | </li>
-    <li><router-link to="/visuals">Visual Record</router-link></li>
+    <li><router-link to="/visuals">Visual Record</router-link> | </li>
+    <li><router-link to="/places">Places</router-link></li>  
   </ul>
   
   <router-view></router-view>

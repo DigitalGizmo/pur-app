@@ -97,10 +97,10 @@
 import { ref } from 'vue';
 import { useQuery, useResult } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
-import StrollMore from '../components/StrollMore.vue'
+import StrollMore from '../../components/places/StrollMore.vue'
 
 export default {
-  name: 'Fourteenth',
+  name: 'StuyStroll',
 
   // Composable-based graphql for the image list from admin
   setup () {
