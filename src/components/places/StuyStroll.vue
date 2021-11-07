@@ -5,91 +5,38 @@
     <p>A brief introduction perhaps?</p>
   </header>
 
-<div id="wrapper">
-  <div id="caption-band">
-
-    <div v-if="error">Error: {{ error.message }} </div>
-
-    <div 
-      v-for="(hotspot, index) of hotspots"
-      :key="hotspot.ordinal"
-      class="cap" 
-      :style="{left: hotspot.text_percent + '%'}"
-      :class="{'hi-text': hilites[index] }"
-      @mouseover="hoverThis(index)"
-      @mouseleave="unHoverThis(index)"
-      >
-      <h4>{{ hotspot.title }}</h4>
-      <p>
-        {{ hotspot.blurb }} 
-        <a @click="showStrollMore(index)" href="#">more...</a>
-      </p>
-    </div>
-
-
-  </div><!-- /caption-band -->
-
-  <!-- style="enable-background:new 0 0 6000 1647;" -->
-
-  <section id="view-frame">
-
-    <svg 
-      version="1.1" 
-      xmlns="http://www.w3.org/2000/svg" 
-      xmlns:xlink="http://www.w3.org/1999/xlink" 
-      x="0px" y="0px"
-      viewBox="0 0 6000 1647"
-      preserveAspectRatio="xMidYMid meet" 
-       
-      xml:space="preserve"
-      class="svg-content"
-      >
-
-    <g id="photo">
-      <image  
-          width="6006" height="1500" 
-          xlink:href="http://dev.picturingurbanrenewal.org/prod-assets/interactives/14thStreet/fourteenth-BB.jpg"  
-          transform="translate(0 0)"> <!-- 171.62 -->
-      </image>
-    </g>
-
-    <g v-if="loading">
-      <text x="100" y="50" fill="black">Loading...</text>
-    </g>
-
-    <g v-else-if="hotspots" id="hilites" >
-
-      <circle
-        v-for="(hotspot, index) of hotspots"
-        :key="hotspot.ordinal"
-        class="low-spot" 
-        :class="{'hi-spot': hilites[index] }"
-        :cx="hotspot.hotspot_x" 
-        :cy="hotspot.hotspot_y" 
-        :r="hotspot.hotspot_r"
-        @mouseover="hoverThis(index)"
-        @mouseleave="unHoverThis(index)"
-        />
-
-    </g>
-    <g id="turn-buttons">
-      <polyline class="st9" points="85.2,191 26.8,239 85.2,289  "/>
-      <text transform="translate(85.1718 245)" class="st10 st2 st11">TURN THE CORNER</text>
-    </g>
-    </svg>
-
-  <stroll-more
-    v-if="strollMoreOn"
+  <stuy-first
+    v-if="partIndex === 0"
       :hotspots="hotspots"
-      :currIndex="currIndex"
+      :hiliteIndex="hiliteIndex"
+      :loading="loading"
+      :error="error"
+      :strollMoreOn="strollMoreOn"
+      :showStrollMore="showStrollMore"
       :closeStrollMore="closeStrollMore"
+      :hilites="hilites"
+      :hoverThis="hoverThis"
+      :unHoverThis="unHoverThis"
+      :goPart="goPart"
     >
-  </stroll-more>
+  </stuy-first>
 
-  </section> <!-- end view-frame -->
+  <stuy-fourteenth
+    v-if="partIndex === 1"
+      :hotspots="hotspots"
+      :hiliteIndex="hiliteIndex"
+      :loading="loading"
+      :error="error"
+      :strollMoreOn="strollMoreOn"
+      :showStrollMore="showStrollMore"
+      :closeStrollMore="closeStrollMore"
+      :hilites="hilites"
+      :hoverThis="hoverThis"
+      :unHoverThis="unHoverThis"
+      :goPart="goPart"
+    >
+  </stuy-fourteenth>
 
-
-</div><!-- /wrapper -->
 
 </template>
 
@@ -97,7 +44,9 @@
 import { ref } from 'vue';
 import { useQuery, useResult } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
-import StrollMore from '../../components/places/StrollMore.vue'
+// import StrollMore from '../../components/places/StrollMore.vue'
+import StuyFourteenth from '../../components/places/StuyFourteenth.vue'
+import StuyFirst from '../../components/places/StuyFirst.vue'
 
 export default {
   name: 'StuyStroll',
@@ -105,7 +54,14 @@ export default {
   // Composable-based graphql for the image list from admin
   setup () {
 
-    // --- hotspot handling
+    // -------- Switch between parts ---------
+    const partIndex = ref(1);
+
+    function goPart(index) {
+      partIndex.value = index;
+    }
+
+    // ------- hotspot handling ----------
     const hilites = ref([false, false, false, false, false, false, false, false, false,false, false]);
 
     // hilites.value[1] = true;
@@ -118,13 +74,13 @@ export default {
       hilites.value[index] = false;
     }
 
-    // ---- More ------------
+    // ----------- More ------------
     const strollMoreOn = ref(false);
-    const currIndex = ref(0);
+    const hiliteIndex = ref(0);
 
     function showStrollMore (index) {
-      currIndex.value = index;
-      console.log('currIndex: ' + currIndex.value);
+      hiliteIndex.value = index;
+      console.log('hiliteIndex: ' + hiliteIndex.value);
       strollMoreOn.value = true;
     }
 
@@ -132,7 +88,7 @@ export default {
       strollMoreOn.value = false;
     }
 
-    // ------ Data from gql handling -----
+    // ------ Data from gql  -----
     // Dynamic version
     // const interactive_part_id_ref = ref(null)
     // But for now, static
@@ -169,15 +125,19 @@ export default {
       hoverThis,
       unHoverThis,
       strollMoreOn,
-      currIndex,
+      hiliteIndex,
       showStrollMore,
       closeStrollMore,
+      goPart,
+      partIndex,
     }
-  },
+  }, // end setup
   components: {
-    StrollMore
+    // StrollMore,
+    StuyFourteenth,
+    StuyFirst,
   },
-}
+} // end export default
 </script>
 
 
@@ -192,19 +152,7 @@ export default {
     overflow-x: scroll;
   }
 
-  #caption-band {
-    background-color: #464231;
-    width: 200%;
-    padding:  .1em;
-    position: relative;
-    font-size: .75em;
-    height: 100px;
-  }
-
-  #view-frame {
-    position: relative;
-    width: 200%;
-  }
+/*Caption-band and view-frame moved to respective sub-comonents*/
 
 /*Don: new for svg responsiveness! */
 .svg-content {
