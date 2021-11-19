@@ -9,6 +9,7 @@ import App from './App.vue';
 import Visuals from './components/Visuals.vue';
 import StuyStroll from './components/places/StuyStroll.vue';
 import PlacesMenu from './components/places/PlacesMenu.vue';
+import CitiesMenu from './components/cities/CitiesMenu.vue';
 import Corner from './components/Corner.vue';
 import Home from './components/Home.vue';
 
@@ -18,6 +19,7 @@ const router = createRouter({
     // base: process.env.NODE_ENV === 'development' ? '/' : '/app/', 
     routes: [
         { path: '/places', component: PlacesMenu },
+        { path: '/cities', component: CitiesMenu },
         { path: '/places/stuy-stroll', component: StuyStroll },
         { path: '/visuals', component: Visuals },
         { path: '/', component: Home },
